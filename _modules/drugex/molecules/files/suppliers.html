@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>drugex.molecules.files.suppliers &mdash; DrugEx 3.1.0.dev0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> DrugEx
+          </a>
+              <div class="version">
+                v3.1.0.dev0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../use.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/modules.html">DrugEx API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">DrugEx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      <li>drugex.molecules.files.suppliers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for drugex.molecules.files.suppliers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">files</span>
+
+<span class="sd">Created by: Martin Sicho</span>
+<span class="sd">On: 06.04.22, 17:05</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">gzip</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">rdkit</span> <span class="kn">import</span> <span class="n">Chem</span>
+
+<span class="kn">from</span> <span class="nn">drugex.molecules.converters.default</span> <span class="kn">import</span> <span class="n">SmilesToDrEx</span><span class="p">,</span> <span class="n">RDKitToDrEx</span>
+<span class="kn">from</span> <span class="nn">drugex.molecules.files.interfaces</span> <span class="kn">import</span> <span class="n">FileParseException</span><span class="p">,</span> <span class="n">TextFileSupplier</span>
+
+
+<div class="viewcode-block" id="CSVSupplier"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier">[docs]</a><span class="k">class</span> <span class="nc">CSVSupplier</span><span class="p">(</span><span class="n">TextFileSupplier</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">path</span><span class="p">,</span>
+            <span class="n">mol_col</span><span class="o">=</span><span class="s1">&#39;SMILES&#39;</span><span class="p">,</span>
+            <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
+            <span class="n">extra_cols</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(),</span>
+            <span class="n">afterParse</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">beforeParse</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">converter</span> <span class="o">=</span> <span class="n">SmilesToDrEx</span><span class="p">(),</span>
+            <span class="n">hide_duplicates</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CSVSupplier</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">afterParse</span><span class="p">,</span> <span class="n">beforeParse</span><span class="p">,</span> <span class="n">converter</span><span class="p">,</span> <span class="n">hide_duplicates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">separator</span> <span class="o">=</span> <span class="n">sep</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">molecule_column</span> <span class="o">=</span> <span class="n">mol_col</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span>  <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata_columns</span> <span class="o">=</span> <span class="n">extra_cols</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">header</span> <span class="o">=</span>  <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_line</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="CSVSupplier.parseHeader"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier.parseHeader">[docs]</a>    <span class="k">def</span> <span class="nf">parseHeader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cols</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="n">cols</span> <span class="o">=</span>  <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">FileParseException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not find molecule  column: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">molecule_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span><span class="n">header_item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">header_item</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_column</span> <span class="ow">or</span> <span class="n">header_item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_columns</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="n">header_item</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span></div>
+
+<div class="viewcode-block" id="CSVSupplier.checkLineIntegrity"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier.checkLineIntegrity">[docs]</a>    <span class="k">def</span> <span class="nf">checkLineIntegrity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">col_data</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">col_data</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">warn</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Skipping line: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">current_line</span><span class="si">}</span><span class="s1">. Found different number of data columns than expected (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">col_data</span><span class="p">)</span><span class="si">}</span><span class="s1">  != </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_cols</span><span class="si">}</span><span class="s1">). Offending data: </span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="CSVSupplier.getColumnData"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier.getColumnData">[docs]</a>    <span class="k">def</span> <span class="nf">getColumnData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">separator</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="CSVSupplier.getMolData"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier.getMolData">[docs]</a>    <span class="k">def</span> <span class="nf">getMolData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">col_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">molecule_column</span><span class="p">]]</span></div>
+
+<div class="viewcode-block" id="CSVSupplier.getMolMetadata"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier.getMolMetadata">[docs]</a>    <span class="k">def</span> <span class="nf">getMolMetadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_data</span><span class="p">):</span>
+        <span class="n">metadata</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">metadata_columns</span><span class="p">:</span>
+            <span class="n">metadata</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">col_data</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="n">col</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">metadata</span></div>
+
+<div class="viewcode-block" id="CSVSupplier.parseMol"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.CSVSupplier.parseMol">[docs]</a>    <span class="k">def</span> <span class="nf">parseMol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_line</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_line</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_line</span> <span class="o">+=</span>  <span class="mi">1</span>
+
+        <span class="c1"># extract data for all columns</span>
+        <span class="n">col_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getColumnData</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="c1"># detect header</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">header</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parseHeader</span><span class="p">(</span><span class="n">col_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># check integrity of current line</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">checkLineIntegrity</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">col_data</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="c1"># extract desired data</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMolData</span><span class="p">(</span><span class="n">col_data</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMolMetadata</span><span class="p">(</span><span class="n">col_data</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="SDFSupplier"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.SDFSupplier">[docs]</a><span class="k">class</span> <span class="nc">SDFSupplier</span><span class="p">(</span><span class="n">TextFileSupplier</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">path</span><span class="p">,</span>
+            <span class="n">afterParse</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">beforeParse</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">converter</span> <span class="o">=</span> <span class="n">RDKitToDrEx</span><span class="p">(),</span>
+            <span class="n">hide_duplicates</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">path</span><span class="p">,</span>
+            <span class="n">afterParse</span><span class="p">,</span>
+            <span class="n">beforeParse</span><span class="p">,</span>
+            <span class="n">converter</span><span class="p">,</span>
+            <span class="n">hide_duplicates</span>
+        <span class="p">)</span>
+
+<div class="viewcode-block" id="SDFSupplier.getGenerator"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.SDFSupplier.getGenerator">[docs]</a>    <span class="k">def</span> <span class="nf">getGenerator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span>
+        <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">Chem</span><span class="o">.</span><span class="n">ForwardSDMolSupplier</span><span class="p">(</span><span class="n">gzip</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">Chem</span><span class="o">.</span><span class="n">ForwardSDMolSupplier</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SDFSupplier.parseMol"><a class="viewcode-back" href="../../../../api/drugex.molecules.files.html#drugex.molecules.files.suppliers.SDFSupplier.parseMol">[docs]</a>    <span class="k">def</span> <span class="nf">parseMol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">item</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Xuhan Liu, Sohvi Lukkonen, Helle van den Maagdenberg, Linde Schoenmaker, Martin Sicho.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

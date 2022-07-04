@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>drugex.molecules.files package &mdash; DrugEx 3.1.0.dev0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="drugex.parallel package" href="drugex.parallel.html" />
+    <link rel="prev" title="drugex.molecules.converters package" href="drugex.molecules.converters.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> DrugEx
+          </a>
+              <div class="version">
+                v3.1.0.dev0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Welcome</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../use.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DrugEx API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="drugex.html">drugex package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="drugex.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="drugex.data.html">drugex.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drugex.logs.html">drugex.logs package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="drugex.molecules.html">drugex.molecules package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drugex.parallel.html">drugex.parallel package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drugex.training.html">drugex.training package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="drugex.utils.html">drugex.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#module-drugex.about">drugex.about module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#module-drugex.dataset">drugex.dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#drugex-designer-module">drugex.designer module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#module-drugex.environ">drugex.environ module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#module-drugex.train">drugex.train module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drugex.html#module-drugex">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DrugEx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">DrugEx API</a> &raquo;</li>
+          <li><a href="drugex.html">drugex package</a> &raquo;</li>
+          <li><a href="drugex.molecules.html">drugex.molecules package</a> &raquo;</li>
+      <li>drugex.molecules.files package</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="drugex-molecules-files-package">
+<h1>drugex.molecules.files package<a class="headerlink" href="#drugex-molecules-files-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-drugex.molecules.files.interfaces">
+<span id="drugex-molecules-files-interfaces-module"></span><h2>drugex.molecules.files.interfaces module<a class="headerlink" href="#module-drugex.molecules.files.interfaces" title="Permalink to this heading"></a></h2>
+<p>interfaces</p>
+<p>Created by: Martin Sicho
+On: 22.04.22, 11:50</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="drugex.molecules.files.interfaces.FileParseException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drugex.molecules.files.interfaces.</span></span><span class="sig-name descname"><span class="pre">FileParseException</span></span><a class="reference internal" href="../_modules/drugex/molecules/files/interfaces.html#FileParseException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.interfaces.FileParseException" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3.9/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="drugex.molecules.files.interfaces.TextFileSupplier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drugex.molecules.files.interfaces.</span></span><span class="sig-name descname"><span class="pre">TextFileSupplier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">afterParse=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beforeParse=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter=&lt;drugex.molecules.converters.default.SmilesToDrEx</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_duplicates=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/interfaces.html#TextFileSupplier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.interfaces.TextFileSupplier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="drugex.molecules.html#drugex.molecules.interfaces.BaseMolSupplier" title="drugex.molecules.interfaces.BaseMolSupplier"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMolSupplier</span></code></a>, <a class="reference external" href="https://docs.python.org/3.9/library/abc.html#abc.ABC" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.interfaces.TextFileSupplier.getGenerator">
+<span class="sig-name descname"><span class="pre">getGenerator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/interfaces.html#TextFileSupplier.getGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.interfaces.TextFileSupplier.getGenerator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.interfaces.TextFileSupplier.next">
+<span class="sig-name descname"><span class="pre">next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/interfaces.html#TextFileSupplier.next"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.interfaces.TextFileSupplier.next" title="Permalink to this definition"></a></dt>
+<dd><p>Implement this method so that it provides iteration over molecules item by item. It should fetch next item from a generator, line from a file or next item from a remote API. If there are no more items, raise <a class="reference external" href="https://docs.python.org/3.9/library/exceptions.html#StopIteration" title="(in Python v3.9)"><code class="xref any docutils literal notranslate"><span class="pre">StopIteration</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3.9/library/exceptions.html#StopIteration" title="(in Python v3.9)"><strong>StopIteration</strong></a> – no more items to  return</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>one instance of a molecule
+annotations (optional): molecule associated metadata as a <a class="reference external" href="https://docs.python.org/3.9/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref any docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>molecule</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.interfaces.TextFileSupplier.parseMol">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parseMol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/interfaces.html#TextFileSupplier.parseMol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.interfaces.TextFileSupplier.parseMol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-drugex.molecules.files.suppliers">
+<span id="drugex-molecules-files-suppliers-module"></span><h2>drugex.molecules.files.suppliers module<a class="headerlink" href="#module-drugex.molecules.files.suppliers" title="Permalink to this heading"></a></h2>
+<p>files</p>
+<p>Created by: Martin Sicho
+On: 06.04.22, 17:05</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drugex.molecules.files.suppliers.</span></span><span class="sig-name descname"><span class="pre">CSVSupplier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_col='SMILES'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sep='</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_cols=()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">afterParse=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beforeParse=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter=&lt;drugex.molecules.converters.default.SmilesToDrEx</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_duplicates=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#drugex.molecules.files.interfaces.TextFileSupplier" title="drugex.molecules.files.interfaces.TextFileSupplier"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextFileSupplier</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier.checkLineIntegrity">
+<span class="sig-name descname"><span class="pre">checkLineIntegrity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier.checkLineIntegrity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier.checkLineIntegrity" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier.getColumnData">
+<span class="sig-name descname"><span class="pre">getColumnData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier.getColumnData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier.getColumnData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier.getMolData">
+<span class="sig-name descname"><span class="pre">getMolData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier.getMolData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier.getMolData" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier.getMolMetadata">
+<span class="sig-name descname"><span class="pre">getMolMetadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier.getMolMetadata"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier.getMolMetadata" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier.parseHeader">
+<span class="sig-name descname"><span class="pre">parseHeader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier.parseHeader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier.parseHeader" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.CSVSupplier.parseMol">
+<span class="sig-name descname"><span class="pre">parseMol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#CSVSupplier.parseMol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.CSVSupplier.parseMol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.SDFSupplier">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drugex.molecules.files.suppliers.</span></span><span class="sig-name descname"><span class="pre">SDFSupplier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">afterParse=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beforeParse=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">converter=&lt;drugex.molecules.converters.default.RDKitToDrEx</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hide_duplicates=False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#SDFSupplier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.SDFSupplier" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#drugex.molecules.files.interfaces.TextFileSupplier" title="drugex.molecules.files.interfaces.TextFileSupplier"><code class="xref py py-class docutils literal notranslate"><span class="pre">TextFileSupplier</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.SDFSupplier.getGenerator">
+<span class="sig-name descname"><span class="pre">getGenerator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#SDFSupplier.getGenerator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.SDFSupplier.getGenerator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.suppliers.SDFSupplier.parseMol">
+<span class="sig-name descname"><span class="pre">parseMol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/suppliers.html#SDFSupplier.parseMol"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.suppliers.SDFSupplier.parseMol" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-drugex.molecules.files.tests">
+<span id="drugex-molecules-files-tests-module"></span><h2>drugex.molecules.files.tests module<a class="headerlink" href="#module-drugex.molecules.files.tests" title="Permalink to this heading"></a></h2>
+<p>tests</p>
+<p>Created by: Martin Sicho
+On: 12.04.22, 15:07</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">drugex.molecules.files.tests.</span></span><span class="sig-name descname"><span class="pre">TestFileParsers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">TestCase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.getTestFile">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getTestFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.getTestFile"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.getTestFile" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_csv_annotations">
+<span class="sig-name descname"><span class="pre">test_csv_annotations</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_csv_annotations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_csv_annotations" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_csv_bad_header">
+<span class="sig-name descname"><span class="pre">test_csv_bad_header</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_csv_bad_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_csv_bad_header" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_csv_bad_row">
+<span class="sig-name descname"><span class="pre">test_csv_bad_row</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_csv_bad_row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_csv_bad_row" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_csv_correct">
+<span class="sig-name descname"><span class="pre">test_csv_correct</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_csv_correct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_csv_correct" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_csv_duplicates">
+<span class="sig-name descname"><span class="pre">test_csv_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_csv_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_csv_duplicates" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_df">
+<span class="sig-name descname"><span class="pre">test_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_df" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_parallel">
+<span class="sig-name descname"><span class="pre">test_parallel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_parallel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_parallel" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_parallel_with_suppliers">
+<span class="sig-name descname"><span class="pre">test_parallel_with_suppliers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_parallel_with_suppliers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_parallel_with_suppliers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="drugex.molecules.files.tests.TestFileParsers.test_sdf">
+<span class="sig-name descname"><span class="pre">test_sdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/drugex/molecules/files/tests.html#TestFileParsers.test_sdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#drugex.molecules.files.tests.TestFileParsers.test_sdf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-drugex.molecules.files">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-drugex.molecules.files" title="Permalink to this heading"></a></h2>
+<p>__init__.py</p>
+<p>Created by: Martin Sicho
+On: 22.04.22, 11:49</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="drugex.molecules.converters.html" class="btn btn-neutral float-left" title="drugex.molecules.converters package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="drugex.parallel.html" class="btn btn-neutral float-right" title="drugex.parallel package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Xuhan Liu, Sohvi Lukkonen, Helle van den Maagdenberg, Linde Schoenmaker, Martin Sicho.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
